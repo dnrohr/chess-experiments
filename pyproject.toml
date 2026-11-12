@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "counterfactual-chess"
+version = "0.1.0"
+description = "Offline chess analysis with inspectable engine variations"
+requires-python = ">=3.11"
+dependencies = ["python-chess>=1.999,<2", "PySide6-Essentials>=6.8,<7"]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10", "pytest-qt>=4.4,<5"]
+
+[project.scripts]
+counterfactual-chess = "counterfactual_chess.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+counterfactual_chess = ["assets/*.svg", "assets/*.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["integration: requires STOCKFISH_PATH to a real engine"]
